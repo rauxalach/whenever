@@ -3,6 +3,10 @@ module Whenever
     def self.load_into(capistrano_configuration)
       capistrano_configuration.load do
 
+        def whenever_variables(hash)
+          hash.map { |k, v| "#{k}=#{v}" }.join('&')
+        end
+
         def whenever_options
           fetch(:whenever_options)
         end
